@@ -539,7 +539,17 @@ Proof.
   intros; apply Theorem20_2 with (z:=y`); Simpl_N.
 Qed.
 
-Hint Rewrite NMi3 NMi4 NMi5 : Nat.
+Corollary NMi6 : ∀ n l, Minus_N n` n l = 1.
+Proof.
+  intros; apply Theorem20_2 with (z:=n); Simpl_N.
+Qed.
+
+Hint Rewrite NMi3 NMi4 NMi5 NMi6 : Nat.
+
+Corollary NMi7 : ∀ {n k} l l1, Minus_N n` k l = (Minus_N n k l1)`.
+Proof.
+  intros; apply Theorem20_2 with (z:=k); Simpl_N.
+Qed.
 
 (* SECTION IV Multiplication *)
 
