@@ -9,7 +9,6 @@
 Require Import StD calTh.
 
 (* Higher order strong derivative *)
-
 Fixpoint N_str_derivative F f a b n :=
   match n with
   | 1 => str_derivative F f a b
@@ -45,7 +44,6 @@ Ltac Ndg f := unfold N_th, Getele; destruct (cid) as [f ]; simpl proj1_sig.
 Ltac Pdg f := unfold P_th, Getele; destruct (cid) as [f ]; simpl proj1_sig.
 
 (* Main term of Taylor formula for higher order strong derivative *)
-
 Fixpoint TFmain_std F a b c n
   :N_str_derivability F a b n -> Rfun := match n with
   | 1 => λ _ _, F c
@@ -63,7 +61,6 @@ Proof.
 Qed.
 
 (* Taylor theorem for higher order strong derivative *)
-
 Theorem TTstd : ∀ {F a b n l},
   ∀ M, (∀ x, x ∈ [a|b] -> |(N_th l) x|≦M) ->
   ∀ c x, c ∈ [a|b] -> x ∈ [a|b] ->
