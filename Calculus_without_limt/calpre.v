@@ -110,10 +110,9 @@ Proof.
     + eapply Theorem173; eauto.
 Qed.
 
-Definition unbounded_recFun (f :Rfun) I := 
-  ∀ M, ∃ z l, z ∈ I /\ M < |(1/(f z)) l|.
+Definition unbRecF (f :Rfun) I := ∀ M, ∃ z l, z ∈ I /\ M < |(1/(f z)) l|.
 
-Fact ubrp1 : ∀ {a b}, a < b -> unbounded_recFun Δ (O|b-a].
+Fact ubrp1 : ∀ {a b}, a < b -> unbRecF Δ (O|b-a].
 Proof.
   intros; red; intros. apply Theorem182_1' in H. destruct (Co_T167 M O).
   - exists (b-a). exists (uneqOP H); split.
@@ -133,8 +132,7 @@ Proof.
 Qed.
 
 Fact ubrp2 : ∀ {d1 d2 I}, fun_pinc d1 I -> fun_pinc d2 I -> 
-  unbounded_recFun d1 I -> unbounded_recFun d2 I -> 
-  unbounded_recFun (maxfun d1 d2) I.
+  unbRecF d1 I -> unbRecF d2 I -> unbRecF (maxfun d1 d2) I.
 Proof.
   intros; red; intro. set (d:=maxfun d1 d2) in *.
   destruct (H1 M) as [z1 [l1 [H3]]], (H2 M) as [z2 [l2 [H5]]], H, H0.
@@ -183,7 +181,7 @@ Proof.
 Qed.
 
 Definition uniform_continuous f a b :=
-  ∃ d, fun_pinc d (O|b-a] /\ unbounded_recFun d (O|b-a] /\
+  ∃ d, fun_pinc d (O|b-a] /\ unbRecF d (O|b-a] /\
   ∀ x h, x ∈ [a|b] -> (x+h) ∈ [a|b] -> |f(x+h) - f(x)| ≦ d(|h|).
 
 Corollary Co_uc : ∀ {f d a b}, 
