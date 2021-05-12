@@ -9,7 +9,7 @@
 Require Export DCF.
 
 Definition uni_derivative F f a b := 
-  ∃ d, fun_pinc d (O|b-a] /\ unbounded_recFun d (O|b-a] /\ ∃ M, O < M /\ 
+  ∃ d, fun_pinc d (O|b-a] /\ unbRecF d (O|b-a] /\ ∃ M, O < M /\ 
   ∀ x h, x ∈ [a|b] -> (x+h) ∈ [a|b] -> |F(x+h) - F(x) - f(x)·h| ≦ M·|h|·d(|h|).
 
 Corollary Co_der : ∀ {F f d M a b}, 
@@ -90,7 +90,7 @@ Proof.
   { red; split; intros; unfold D.
     - apply Pos; auto.
     - red; intros. apply LeTi_R1'; auto. }
-  assert (G3 :unbounded_recFun D1 (O|b-a]).
+  assert (G3 :unbRecF D1 (O|b-a]).
   { red; intros; unfold D1. destruct (H0 (2·M·M0)) as [z [l [H6]]].
     assert ((2·M·d(z)) > O). { apply Pos; auto. }
     exists z, (uneqOP H5); split; auto.
@@ -106,7 +106,7 @@ Proof.
     unfold D; destruct classicT; auto. EGR e H4. }
   assert (fun_pinc D (O|b-a]).
   { destruct G2. split; [|red]; intros; repeat rewrite H4; auto. }
-  assert (unbounded_recFun D (O|b-a]).
+  assert (unbRecF D (O|b-a]).
   { red; intros. destruct (G3 M0) as [z [l [H8]]].
     exists z. rewrite H4; eauto. } exists D. split; auto. split; auto. intros. 
   assert ((x+h+(-h)) ∈ [a|b]). { Simpl_R. }
@@ -182,8 +182,8 @@ Proof.
     - subst a. pose proof (ccir H12). exists (b-x); split; Simpl_R.
       apply Theorem182_1' in H2. intro. EGR H14 H2. } destruct H12 as [h [H12]].
   assert (fun_pinc d (O|b-a]). { apply fpcp2; auto. }
-  assert (unbounded_recFun d (O|b-a]). { apply ubrp2; auto. }
-  assert (unbounded_recFun d (O|(|h|)]).
+  assert (unbRecF d (O|b-a]). { apply ubrp2; auto. }
+  assert (unbRecF d (O|(|h|)]).
   { red; intros. destruct (H15 M0) as [z1 [l1 [H16]]].
     assert (R2min z1 (|h|) ∈ (O|b-a]).
     { destruct H16, H16. apply Ab8 in H13. split; split.
@@ -316,7 +316,7 @@ Proof.
   intros. destruct H as [d1 H], H, H1, H2 as [M1 [H2]].
   destruct H0 as [d2 H0], H0, H4, H5 as [M2 [H5]]. set (d:=maxfun d1 d2).
   assert (fun_pinc d (O|b-a]). { apply fpcp2; auto. }
-  assert (unbounded_recFun d (O|b-a]). { eapply ubrp2; eauto. }
+  assert (unbRecF d (O|b-a]). { eapply ubrp2; eauto. }
   exists d. split; auto. split; auto.
   exists (M1 + M2); split; intros.
   - destruct M1, M2; simpl; auto; inversion H2; inversion H5.
@@ -360,7 +360,7 @@ Proof.
   destruct H as [d1 H], H, H9, H10 as [M3 [H10]].
   destruct H0 as [d2 H0], H0, H12, H13 as [M4 [H14]].
   assert (fun_pinc Δ (O|b-a]). { apply fpcp1; auto. }
-  assert (unbounded_recFun Δ (O|b-a]). { apply ubrp1, Theorem182_1; auto. }
+  assert (unbRecF Δ (O|b-a]). { apply ubrp1, Theorem182_1; auto. }
   pose proof (fpcp2 (fpcp2 H H0) H15) as K2.
   pose proof (ubrp2 (fpcp2 H H0) H15 (ubrp2 H H0 H9 H12) H16) as K3.
   set (d:=maxfun (maxfun d1 d2) Δ) in *. exists d.
