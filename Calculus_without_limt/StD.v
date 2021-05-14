@@ -292,65 +292,6 @@ Proof.
   - red; intros. pose proof (Theorem182_1 _ _ l). eapply ccilt in H2; eauto.
     eapply Med_der; eauto. apply std_imply_der; auto.
   - eapply lipstdf; eauto.
-  - destruct H, H0 as [M [H0]].
-    exists M; split; intros; auto.
-    destruct (Theorem167 O h) as [H5 | [H5 | H5]].
-    + subst h; Simpl_R; simpl; red; auto.
-    + assert (x+h-x > O). { Simpl_R. }
-      destruct (H _  _ H4) as [p [q [H6 [H7 [H8]]]]]; auto.
-      apply LePl_R with (z:=-f(x)) in H8; Simpl_Rin H8.
-      apply LePl_R with (z:=-f(x)) in H9; Simpl_Rin H9.
-      pose proof (R2Mge (conj H8 H9)).
-      assert (R2max (|f p - f x|) (|f q - f x|) ≦ M·h).
-      { apply R2Mle.
-        - assert (|p-x| ≦ h). { apply ccile2; auto. }
-          apply LeTi_R1' with (z:=M) in H11; auto.
-          eapply Theorem173; eauto.
-          apply (mstdpre a b x (x+h)); auto. apply ccil'; auto.
-        - assert (|q-x| ≦ h). { apply ccile2; auto. }
-          apply LeTi_R1' with (z:=M) in H11; auto.
-          eapply Theorem173; eauto.
-          apply (mstdpre a b x (x+h)); auto. apply ccil'; auto. }
-      eapply Theorem173 in H11; eauto.
-      apply LeTi_R1 with (z:=(x+h-x)) in H11; auto.
-      pattern (x+h-x) at 3 in H11. rewrite <- Ab3 in H11; auto.
-      rewrite <- Theorem193, Theorem202' in H11; Simpl_Rin H11.
-      rewrite Theorem199 in H11; auto.
-    + assert ((x+h+(-h)) ∈ [a|b]). { Simpl_R. }
-      apply Theorem176_3 in H5.
-      assert (x+h+(-h) - (x+h) > O). { Simpl_R. }
-      destruct (H _ _ H6 H3 H4) as [p [q [H7 [H8 [H9]]]]].
-      apply LePl_R with (z:=-f(x)) in H9; Simpl_Rin H9.
-      apply LePl_R with (z:=-f(x)) in H10; Simpl_Rin H10.
-      pose proof (R2Mge (conj H9 H10)). Simpl_Rin H7. Simpl_Rin H8.
-      assert (R2max (|f p - f x|) (|f q - f x|) ≦ M · |h|).
-      { apply R2Mle.
-        - assert (|p-x| ≦ |h|). { apply ccile3; auto. }
-          apply LeTi_R1' with (z:=M) in H12; auto.
-          eapply Theorem173; eauto.
-          apply (mstdpre a b (x+h) x); auto. apply ccir'; auto.
-        - assert (|q-x| ≦ |h|). { apply ccile3; auto. }
-          apply LeTi_R1' with (z:=M) in H12; auto.
-          eapply Theorem173; eauto.
-          apply (mstdpre a b (x+h) x); auto. apply ccir'; auto. }
-      eapply Theorem173 in H12; eauto.
-      apply LeTi_R1 with (z:=(x + h + - h - (x + h))) in H12; auto.
-      pattern (x+h+-h-(x+h)) at 3 in H12. rewrite <- Ab3 in H12; auto.
-      rewrite <- Theorem193, Theorem202' in H12; Simpl_Rin H12.
-      unfold Minus_R at 1. rewrite <- Theorem178, 
-        Theorem180, Theorem181, <- Theorem197''; Simpl_R.
-      pattern (-h) at 2 in H12; rewrite <- Ab3 in H12; auto. 
-      rewrite Theorem178, Theorem199 in H12; auto.
-      rewrite <- square_p2; auto.
-Qed.
-
-Theorem Meds_std : ∀ {F f a b}, str_derivative F f a b <->
-  diff_quo_median F f a b /\ Lipschitz f a b.
-Proof.
-  repeat split; intros.
-  - red; intros. pose proof (Theorem182_1 _ _ l). eapply ccilt in H2; eauto.
-    eapply Med_der; eauto. apply std_imply_der; auto.
-  - eapply lipstdf; eauto.
   - destruct H, H0 as [M [H0]]. exists M; split; intros; auto.
     assert (∀u v z, u ∈ [a|b] -> (u+v) ∈ [a|b] -> z ∈ [u|u+v] -> 
       v > O -> |F(u+v)-F(u)-f(z)·v| ≦ M·v^2).
@@ -358,7 +299,7 @@ Proof.
       destruct (H _  _ H8) as [p [q [H9 [H10 [H11]]]]]; auto.
       apply LePl_R with (z:=-f(z)) in H11; Simpl_Rin H11.
       apply LePl_R with (z:=-f(z)) in H12; Simpl_Rin H12.
-      pose proof (R2Mge (conj H11 H12)). 
+      pose proof (R2AMge (conj H11 H12)). 
       assert (v ∈ (O|b-a]) as G.
       { apply (ocisub (u+v) u); Simpl_R. split; split; red; auto. }
       assert (∀j, j ∈ [u|u+v] -> |f j - f z|≦ M·v).
