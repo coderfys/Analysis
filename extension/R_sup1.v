@@ -118,17 +118,23 @@ Proof.
   intros. rewrite powT. Simpl_R. apply pow1.
 Qed.
 
-Lemma R2Mle : ∀ a b c, a ≦ c -> b ≦ c -> R2max a b ≦ c.
-Proof.
-  intros. destruct (Pr_max4 a b); rewrite H1; auto.
-Qed.
-
 Lemma R2mgt : ∀ a b c, c < a -> c < b -> c < R2min a b.
 Proof.
   intros. destruct (Pr_min4 a b); rewrite H1; auto.
 Qed.
 
-Lemma R2Mge : ∀ {a b c}, a ≦ c /\ c ≦ b -> |c| ≦ R2max (|a|) (|b|).
+Lemma R2mlt : ∀ a b c, a < c \/ b < c -> R2min a b < c.
+Proof.
+  intros. generalize Pr_min2 Pr_min3; intros.
+  destruct H; eapply Theorem172; eauto.
+Qed.
+
+Lemma R2Mle : ∀ a b c, a ≦ c -> b ≦ c -> R2max a b ≦ c.
+Proof.
+  intros. destruct (Pr_max4 a b); rewrite H1; auto.
+Qed.
+
+Lemma R2AMge : ∀ {a b c}, a ≦ c /\ c ≦ b -> |c| ≦ R2max (|a|) (|b|).
 Proof.
   intros. destruct H, c; simpl.
   - pose proof (Pr_max3 (|a|) (|b|)). eapply Theorem173; eauto.
@@ -333,8 +339,3 @@ Proof.
   intros. apply Ab8 in H1. pose proof (ccile1 H H0). Simpl_Rin H2.
   split; split; auto.
 Qed.
-
-
-
-
-
