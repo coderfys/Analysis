@@ -660,7 +660,7 @@ Proof.
       destruct (H _  _ H9) as [p [q [H10 [H11 [H12]]]]]; auto.
       apply LePl_R with (z:=-f(z)) in H12; Simpl_Rin H12.
       apply LePl_R with (z:=-f(z)) in H13; Simpl_Rin H13.
-      pose proof (R2Mge (conj H12 H13)). 
+      pose proof (R2AMge (conj H12 H13)). 
       assert (v ∈ (O|b-a]) as G.
       { apply (ocisub (u+v) u); Simpl_R. split; split; red; auto. }
       assert (∀j, j ∈ [u|u+v] -> |f j - f z|≦ d(v)).
