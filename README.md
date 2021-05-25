@@ -2,6 +2,7 @@
 Formal analysis in coq
 
 Foundations_of_Analysis-A formalization of Landau's "Foundations of Analysis".
+
 Pre_Logic.v
 
 Pre_Ensemble.v
@@ -29,6 +30,7 @@ R_sup1.v
 Seq.v
 
 Properties_of_continuous_functions_on_closed_intervals-A formalization of properties of continuous functions on closed intervals.
+
 fun.v
 
 completeness-A formalization of cyclic proof of real number completeness theorem.
