@@ -1,6 +1,7 @@
 # Analysis
-Formal analysis in coq
+Formal Analysis in Coq
 
+(********************************)
 
 Foundations_of_Analysis -- A formalization of Landau's "Foundations of Analysis".
 
