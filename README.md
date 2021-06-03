@@ -21,6 +21,8 @@ DFT.v (Dedekind fundamental theorem)
 
 complex.v (Complex numbers)
 
+(*++++++++++++++++++++++++++*)
+
 extension -- A formalization of extension for real numbers.
 
 finite.v (Finiteness related content)
@@ -31,9 +33,13 @@ R_sup1.v (Another supplement for real numbers)
 
 Seq.v (Sequence related content)
 
+(*++++++++++++++++++++++++++*)
+
 Properties_of_continuous_functions_on_closed_intervals -- A formalization of properties of continuous functions on closed intervals.
 
 fun.v (A formalization of properties of continuous functions on closed intervals)
+
+(*++++++++++++++++++++++++++*)
 
 completeness -- A formalization of cyclic proof of real number completeness theorem.
 
@@ -54,6 +60,8 @@ t6.v (Accumulation point theorem prove Sequential compactness theorem)
 t7.v (Sequential compactness theorem prove Cauchy completeness theorem)
 
 t8.v (Cauchy completeness theorem prove Dedekind fundamental theorem)
+
+(*++++++++++++++++++++++++++*)
 
 Calculus_without_limt -- A formalization of calculus without limit theory.
 
