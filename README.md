@@ -81,5 +81,9 @@ calTh.v (Important Theorems in Calculus)
 
 Hstd.v (Higher order strong derivative)
 
+(*++++++++++++++++++++++++++*)
 
+completeness_IVT -- A formalization of completeness of intermediate value theorem.
+
+intsup.v (A formalization of completeness of intermediate value theorem)
 
